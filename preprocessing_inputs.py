@@ -5,6 +5,9 @@ import re
 footer_pattern = r"© Morningstar .*? at the end of this report." #Remove on every page
 header_pattern = r"Morningstar Equity Analyst Report.*?;;;;;.*?, UTC\s*" #Remove on every page
 bullet_pattern = r"^u "
+apostrophe_pattern_1 = r" ’ s"
+apostrophe_pattern_2 = r" ’"
+
 
 page_1_pattern = r".*?Sustainalytics . ESG Risk..Rating."
 page_2_pattern = r"Sector Industry.*"
@@ -40,6 +43,7 @@ def process_each_page(text):
 		fixed_string = re.sub(footer_pattern, "", page, flags = re.DOTALL)
 		fixed_string = re.sub(header_pattern, "", fixed_string, flags = re.DOTALL)
 		fixed_string = re.sub(bullet_pattern, "", fixed_string, flags = re.MULTILINE)
+
 		fixed_text.append(fixed_string)
 
 	return fixed_text
@@ -68,6 +72,10 @@ def final_process(text):
 		fixed_text = fixed_text + " " + cleaned
 		fixed_text = re.sub(r'\s+', ' ', fixed_text)
 
+		#fix apostrophes
+	fixed_text = re.sub(apostrophe_pattern_1, "'s", fixed_text)
+	fixed_text = re.sub(apostrophe_pattern_2, "'", fixed_text)
+
 	return fixed_text
 
 def process_input(file_string):
@@ -93,7 +101,7 @@ def extract_label(all_text):
 	Uses Regular Expressions to extract the label from Morningstar docs"""
 
 	label_dict = {'QQQQQ': 5, 'QQQQ': 4, 'QQQ': 3, 'QQ': 2, 'Q': 1}
-	label_pattern = r" ([Q]+)[0-9]+"
+	label_pattern = r" ([Q]+)."
 
 	page_1 = all_text[0]
 	text_label = re.search(label_pattern, page_1).group(1)
@@ -106,3 +114,13 @@ def extract_label(all_text):
 #processed_text = process_input(all_text)
 
 #print(processed_text)
+
+# current_file = r"E:\Data\NLP\Morningstar\m_adidas_addyy.pdf"
+# test = process_input(current_file)
+# #print(test)
+# print(test[0])
+# # # reader = PdfReader(current_file)
+# # # all_text = [page.extract_text() for page in reader.pages]
+# # # for page in all_text:
+# # # 	print(page)
+# # #print(extract_label(all_text))
