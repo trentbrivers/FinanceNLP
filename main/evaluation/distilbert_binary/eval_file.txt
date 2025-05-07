@@ -1,0 +1,6 @@
+accuracy: {'accuracy': 0.5384615384615384}
+f1: {'f1': 0.5400313971742543}
+precision: {'precision': 0.5436690968605862}
+recall: {'recall': 0.5384615384615384}
+confusion_matrix: {'confusion_matrix': array([[28, 23],
+       [19, 21]], dtype=int64)}
