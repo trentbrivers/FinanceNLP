@@ -1,6 +1,8 @@
 # FinanceNLP
 A project to experiment with fine-tuning pre-trained transformers to conduct textual classification with the 5 stock analyst ratings.
 
+library dependencies: numpy, tensorflow, transformers, evaluate, datasets, pypdf, matplotlib, seaborn, gradio, nltk
+
 The main files necessary to run this project are located in the 'main' folder. Since the full Morningstar reports are copyrighted, I can not redistribute them, but the processed .txt file of my data will be maintained until that needs to change. 
 If you do find yourself in possession of a folder on your hard drive full of Morningstar equity reports, then open the consolidate_processed_data.py script, change the 'path' variable to the correct path to your folder, and then run the script. This script calls the process_input function from my preprocessing_inputs.py script, which uses regular expressions to parse the PDF files into the relevant sections. consolidate_processed_data.py will create a morningstar_data.txt data in your folder.
 
