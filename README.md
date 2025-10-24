@@ -1,4 +1,7 @@
 # FinanceNLP
+
+[![IMAGE ALT TEXT HERE](img/video_thumbnail.png)](https://www.youtube.com/watch?v=dHkH0vuOZwo)
+
 A project to experiment with fine-tuning pre-trained transformers to conduct textual classification with the 5 stock analyst ratings.
 
 library dependencies: numpy, tensorflow, transformers, evaluate, datasets, pypdf, matplotlib, seaborn, gradio, nltk
